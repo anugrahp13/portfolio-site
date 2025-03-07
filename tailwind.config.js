@@ -1,8 +1,4 @@
 /** @type {import('tailwindcss').Config} */
-<<<<<<< HEAD
-export default {
-  content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
-=======
 module.exports = {
   content: [
     "./app/**/*.{js,ts,jsx,tsx,mdx}",
@@ -12,7 +8,6 @@ module.exports = {
     // Or if using `src` directory:
     "./src/**/*.{js,ts,jsx,tsx,mdx}",
   ],
->>>>>>> e51a0f38321b240a305dfb034fbd14abdace5e47
   darkMode: "class",
   theme: {
     container: {
