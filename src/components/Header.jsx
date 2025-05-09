@@ -7,31 +7,41 @@ import { DarkModeToggle } from "./elements/DarkModeToggle";
 import { Sosmed } from "./elements/Sosmed";
 import { IoIosArrowUp } from "react-icons/io";
 import { TimeDisplay } from "./elements/TimeDisplay";
+import { FaWhatsapp } from "react-icons/fa6";
 
 export const Header = () => {
   const [isSidebarMenuOpen, setIsSidebarMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const [showScrollButton, setShowScrollButton] = useState(false);
+  const [lastScrollY, setLastScrollY] = useState(0);
   const sidebarRef = useRef(null);
   const location = useLocation();
 
   useEffect(() => {
     const handleScroll = () => {
-      if (window.scrollY > 0) {
-        setIsScrolled(true);
+      const currentScrollY = window.scrollY;
+
+      // Check if at top
+      setIsScrolled(currentScrollY > 0);
+
+      // Show/hide scroll button based on scroll direction
+      if (currentScrollY > lastScrollY && currentScrollY > 100) {
+        // Scrolling down
         setShowScrollButton(true);
-      } else {
-        setIsScrolled(false);
-        setShowScrollButton(false);
+      } else if (currentScrollY < lastScrollY) {
+        // Scrolling up
+        if (currentScrollY <= 0) {
+          setShowScrollButton(false);
+        }
       }
+
+      setLastScrollY(currentScrollY);
     };
 
-    window.addEventListener("scroll", handleScroll);
+    window.addEventListener("scroll", handleScroll, { passive: true });
 
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
-  }, []);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, [lastScrollY]);
 
   useEffect(() => {
     const handleClickOutside = (event) => {
@@ -221,14 +231,38 @@ export const Header = () => {
         </div>
       </div>
 
-      {showScrollButton && (
-        <button
-          onClick={scrollToTop}
-          className="fixed bottom-4 right-4 p-2 bg-primary rounded-full text-white z-10"
-        >
-          <IoIosArrowUp className="w-6 h-6" />
-        </button>
-      )}
+      <div className="fixed bottom-4 right-4 z-50">
+        {" "}
+        <div className="relative flex">
+          {/* WhatsApp Button */}
+          <Link
+            to="http://wa.me/6281298572424"
+            target="_blank"
+            rel="noopener noreferrer"
+            className={`bg-green-500 rounded-full p-3 flex items-center justify-center mr-1
+                  hover:bg-green-500 transition-all duration-300 shadow-lg hover:opacity-80 ease-in-out
+                  ${
+                    showScrollButton ? "translate-x-[-50px]" : "translate-x-0"
+                  }`}
+          >
+            <FaWhatsapp className="w-6 h-6 text-white" />
+          </Link>
+
+          {/* Scroll to Top Button */}
+          <button
+            onClick={scrollToTop}
+            className={`absolute right-0 bg-blue-500 rounded-full p-3 flex items-center justify-center
+                  hover:bg-blue-600 transition-all duration-500 ease-in-out shadow-lg
+                  ${
+                    showScrollButton
+                      ? "opacity-100 scale-100"
+                      : "opacity-0 scale-50"
+                  }`}
+          >
+            <IoIosArrowUp className="w-6 h-6 text-white" />
+          </button>
+        </div>
+      </div>
     </>
   );
 };
