@@ -1,6 +1,12 @@
 import React from "react";
-import { FaGithub, FaLinkedin } from "react-icons/fa";
-import { Link } from "react-router-dom";
+import {
+  FaGithub,
+  FaInstagram,
+  FaLinkedin,
+  FaTiktok,
+  FaYoutube,
+} from "react-icons/fa";
+import { Sosmed } from "./elements/Sosmed";
 
 export const Footer = () => {
   return (
@@ -9,19 +15,34 @@ export const Footer = () => {
         <div className="container">
           <div className="w-full pt-4">
             <div className="flex items-center justify-center gap-4 mb-5">
-              <Link
-                to="https://github.com/anugrahp13"
-                className="w-9 h-9 rounded-full flex justify-center items-center border border-slate-300 text-slate-300 hover:border-primary hover:text-white hover:bg-primary dark:border-white hover:dark:border-primary">
-                <FaGithub className="w-5 h-5" />
-              </Link>
-              <Link
+              <Sosmed
                 to="https://www.linkedin.com/in/anugrah-prastyo/"
-                className="w-9 h-9 rounded-full flex justify-center items-center border border-slate-300 text-slate-300 hover:border-primary hover:text-white hover:bg-primary dark:border-white hover:dark:border-primary">
-                <FaLinkedin className="w-5 h-5" />
-              </Link>
+                icon={FaLinkedin}
+                iconClassName="w-5 h-5"
+              />
+              <Sosmed
+                to="https://www.instagram.com/agrptio/"
+                icon={FaInstagram}
+                iconClassName="w-5 h-5"
+              />
+              <Sosmed
+                to="https://www.tiktok.com/@agrptio"
+                icon={FaTiktok}
+                iconClassName="w-5 h-5"
+              />
+              <Sosmed
+                to="https://www.youtube.com/@agrptio"
+                icon={FaYoutube}
+                iconClassName="w-5 h-5"
+              />
+              <Sosmed
+                to="https://github.com/anugrahp13"
+                icon={FaGithub}
+                iconClassName="w-5 h-5"
+              />
             </div>
             <p className="font-medium text-sm text-slate-300 text-center">
-              © 2024 - Developed by
+              © 2025 - Developed by
               <span className="font-bold text-primary"> Anugrah Prastyo</span>.
             </p>
           </div>
