@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import { FaGithub, FaLinkedin } from "react-icons/fa";
+import { FaGithub, FaInstagram, FaLinkedin, FaTiktok, FaYoutube } from "react-icons/fa";
 import { HiOutlineMenuAlt2 } from "react-icons/hi";
 import { IoClose } from "react-icons/io5";
 import { Link, useLocation } from "react-router-dom";
@@ -164,7 +164,7 @@ export const Header = () => {
             <button>
               <IoClose
                 onClick={() => setIsSidebarMenuOpen(false)}
-                className="h-8 w-8 scale-75 text-slate-800"
+                className="h-8 w-8 scale-75 text-slate-800 dark:text-white"
               />
             </button>
           </div>
@@ -209,15 +209,30 @@ export const Header = () => {
           <hr className="my-2 text-gray-600" />
           <div className="p-2.5 px-4 mt-auto">
             <div className="flex flex-wrap items-center gap-4 py-3">
+            <Sosmed
+                to="https://www.linkedin.com/in/anugrah-prastyo/"
+                icon={FaLinkedin}
+                iconClassName="w-5 h-5"
+              />
+              <Sosmed
+                to="https://www.instagram.com/agrptio/"
+                icon={FaInstagram}
+                iconClassName="w-5 h-5"
+              />
+              <Sosmed
+                to="https://www.tiktok.com/@agrptio"
+                icon={FaTiktok}
+                iconClassName="w-5 h-5"
+              />
+              <Sosmed
+                to="https://www.youtube.com/@agrptio"
+                icon={FaYoutube}
+                iconClassName="w-5 h-5"
+              />
               <Sosmed
                 to="https://github.com/anugrahp13"
                 icon={FaGithub}
-                iconClassName="w-6 h-6"
-              />
-              <Sosmed
-                to="https://www.linkedin.com/in/anugrah-prastyo/"
-                icon={FaLinkedin}
-                iconClassName="w-6 h-6"
+                iconClassName="w-5 h-5"
               />
             </div>
             <p className="text-left font-semibold text-sm text-slate-800 dark:text-white">
